@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>123</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var homework1 = document.getElementById("homework1");
+				var homework1_copy = homework1;
+				document.getElementById("content-homework1").onclick = function(){
+					window.location.href="#box-homework1";
+				}
+				document.getElementById("homework1-wider").onclick = function () {
+					var width = getComputedStyle(homework1).width;
+					width=parseInt(width.substring(0,width.length-2))+100;
+					width+="px";
+					homework1.style.width=width;					
+				}
+				document.getElementById("homework1-higher").onclick = function(){
+					var height = getComputedStyle(homework1).height;
+					height = parseInt(height.substring(0,height.length-2))+100;
+					height+="px";
+					homework1.style.height=height;
+				}
+				document.getElementById("homework1-green").onclick = function(){
+					homework1.style.backgroundColor="green";
+				}
+				document.getElementById("homework1-yellow").onclick = function(){
+					homework1.style.backgroundColor = "yellow";
+				}
+				document.getElementById("homework1-reset").onclick = function(){
+					homework1.style = homework1_copy.style;
+				}
+			}
+		</script>
+		<style>
+			body{
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			ul{
+				list-style-type: decimal;
+				padding: 20px;
+			}
+			li{
+				list-style-position: outside;
+				font-family: Arial, Helvetica, sans-serif;
+				margin-bottom: 10px;
+			}
+			.list-box{
+				margin-bottom: 40px;
+			}
+			#homework1{
+				background-color: red;
+				width: 200px;
+				height: 150px;
+			}
+
+		</style>
+			<h1>作业</h1>
+			<ul>
+				<li><div id="content-homework1">事件控制div 变宽，变高，变绿，变黄，恢复</div></li>
+				<li>内容框居中  点击注册（遮罩层，居中窗口），点击关闭</li>
+				<li>自定义选项卡 单选框，多选框</li>
+				<li>点击打开设置遮罩层，展示选项，同第一题，设置div</li>
+				<li>5种循环做设置颜色</li>
+				<li>用option和text input设置div的属性</li>
+				<li>选项卡</li>
+			</ul>
+			<div class="list-box" id="box-homework1">
+				<h2>事件控制div 变宽，变高，变绿，变黄，恢复</h2>
+				<div>
+					<input type="button" value="变宽" id = "homework1-wider">
+					<input type="button" value="变高" id = "homework1-higher">
+					<input type="button" value="变绿" id = "homework1-green">
+					<input type="button" value="变黄" id = "homework1-yellow">
+					<input type="button" value="恢复" id = "homework1-reset">
+				</div>
+				<div id="homework1">this is the part under the control.</div>
+			</div>
+			
+	</body>
+</html>
