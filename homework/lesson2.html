@@ -7,7 +7,7 @@
 	<body>
 		<script type="text/javascript">
 			window.onload = function(){
-				
+				//第一个作业
 				var homework1 = document.getElementById("homework1");
 				var homework1_copy = homework1;
 				document.getElementById("content-homework1").onclick = function(){
@@ -34,6 +34,33 @@
 				document.getElementById("homework1-reset").onclick = function(){
 					homework1.style = homework1_copy.style;
 				}
+
+
+				//第二个作业
+				function switchMask(e){
+					if(e.target.id=="mask-layer"){
+						e.target.classList.remove("visible");
+					}else if(e.target.id=="open-mask-layer"){
+						document.querySelector("#mask-layer").classList.add("visible");
+					}
+				}
+				window.addEventListener('click',switchMask);
+
+				//第三个作业
+				var single_selector = document.getElementsByClassName('selector-box');
+				//getElementsByClassName返回的是一个数组对象
+				for(var i = 0; i<single_selector.length; i++){
+					single_selector[i].onclick = function(){
+						for(var j = 0; j < single_selector.length; j++){
+							single_selector[j].classList.remove("selected");
+						}
+						this.classList.add("selected");
+					}
+				}
+				document.getElementById("single-submit").onclick = function(){
+					console.log(document.querySelector('#single-selector .selected').getAttribute('single-selector-data'));
+					//getAttribute() 获取自定义data的值
+				}
 			}
 		</script>
 		<style>
@@ -58,12 +85,56 @@
 				height: 150px;
 			}
 
+			.mask-layer{
+				background-color: rgba(0, 0, 0, 0.4);
+				height: 100%;
+				width: 100%;
+				position: fixed;
+				top:0;
+				left: 0;
+				margin: 0;
+				visibility: hidden;
+				transition: all 0.07s;
+				/*做一个弹性盒子，内部的东西居中*/
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.mask-layer-card{
+				width: 400px;
+				height: 300px;
+				background-color: white;
+			}
+			.visible{
+				visibility: visible;
+			}
+
+			.selector-box{
+				display: inline-block;
+				margin-right: 30px;
+				line-height: 30px;
+			}
+			.icon{
+				width: 30px;
+				height: 30px;
+				background-image: url("src/single.svg");
+				background-size: 30px 30px;
+				float: left;
+			}
+			#single-selector .selected .icon{
+				background-image: url("src/single_selected.svg");
+			}
+			#single-selector span{
+				display: block;
+				float: left;
+			}
+
 		</style>
 			<h1>作业</h1>
 			<ul>
 				<li><div id="content-homework1">事件控制div 变宽，变高，变绿，变黄，恢复</div></li>
-				<li>内容框居中  点击注册（遮罩层，居中窗口），点击关闭</li>
-				<li>自定义选项卡 单选框，多选框</li>
+				<li><div id="content-homework2">内容框居中  点击注册（遮罩层，居中窗口），点击关闭</div></li>
+				<li><div id="content-homework3">自定义选项卡 单选框，多选框</div></li>
 				<li>点击打开设置遮罩层，展示选项，同第一题，设置div</li>
 				<li>5种循环做设置颜色</li>
 				<li>用option和text input设置div的属性</li>
@@ -80,6 +151,31 @@
 				</div>
 				<div id="homework1">this is the part under the control.</div>
 			</div>
-			
+			<div class="list-box" id="box-homework2">
+				<h2>内容框居中  点击注册（遮罩层，居中窗口），点击关闭</h2>
+				<input type="button" value="打开遮罩层" id="open-mask-layer">
+				<div class="mask-layer" id="mask-layer">
+					<div class="mask-layer-card">我是选项框<span style="display: block;">dfafadfakljflkasjflask</span></div>
+				</div>
+			</div>
+			<div class="list-box" id="box-homework3">
+				<h2>自定义选项卡 单选框，多选框</h2>
+				<div id="single-selector">
+					<h3>单选题</h3>
+					<div class="selector-box selected" single-selector-data="1">
+						<div class="icon"></div>
+						<span>番茄</span>
+					</div>
+					<div class="selector-box" single-selector-data="2">
+						<div class="icon"></div>
+						<span>鸡蛋</span>
+					</div>
+					<div class="selector-box" single-selector-data="3">
+						<div class="icon"></div>
+						<span>番茄炒蛋</span>
+					</div>
+				</div>
+				<button id="single-submit">Submit</button>
+			</div>
 	</body>
 </html>
